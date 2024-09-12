@@ -46,7 +46,7 @@ function Signup() {
               const JWT = response.data.token;
               localStorage.setItem("Jwt", JWT);
               dispatch(setToken(JWT));
-              navigate("/");
+              navigate("/user");
               resetForm();
             } else {
               setError("Password must meet the criteria");

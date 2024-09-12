@@ -29,7 +29,7 @@ function Login() {
             const JWT = response.data.token
             localStorage.setItem('Jwt', JWT )
             dispatch(setToken(JWT))
-            navigate('/')
+            navigate('/user')
         } catch (error) {
             if(error.response &&
                 error.response.status === 400){
