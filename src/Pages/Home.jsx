@@ -39,7 +39,7 @@ function Home() {
         </div>
       </div>
       <div className="w-full">
-        <h1 className="text-center text-4xl text-violet-700 font-bold font-mono">
+        <h1 className="text-center text-4xl  font-bold font-mono">
           Rationale List Manager Application
         </h1>
         {selectUser ? <AdminRouter /> : <UserRouter />}
