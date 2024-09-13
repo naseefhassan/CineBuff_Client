@@ -38,8 +38,8 @@ function Home() {
           </h1>
         </div>
       </div>
-      <div className="w-full">
-        <h1 className="text-center text-4xl  font-bold font-mono">
+      <div className="w-full mt-5">
+        <h1 className="text-center text-[4vw] font-bold font-mono">
           Rationale List Manager Application
         </h1>
         {selectUser ? <AdminRouter /> : <UserRouter />}
