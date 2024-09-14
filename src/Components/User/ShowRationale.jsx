@@ -1,7 +1,9 @@
 import editIcon from "../../assets/Images/edit.png";
+import trashIcon from "../../assets/Images/trash.png";
 import swipeIcon from "../../assets/Images/left-arrow.png";
 import axiosInstance from "../../Api/axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function ShowRationale() {
   const [rationaleData, setRationaleData] = useState([]);
@@ -37,6 +39,20 @@ function ShowRationale() {
     setCurrentPage(page);
   };
 
+  const handledDelete = async (delId) => {
+    try {
+      const response = await axiosInstance.delete(`/deleteRationale/${delId}`);
+      setRationaleData(rationaleData.filter((item) => item._id !== delId));
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (!rationaleData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <h1 className="text-center font-bold text-[3vw] sm:text-xl">
@@ -45,10 +61,18 @@ function ShowRationale() {
 
       {rationaleData.map((item, index) => (
         <div key={item._id} className="bg-white rounded-md p-3 my-3">
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-3">
+            <Link to={`/user/edit-rationale/${item._id}`}>
+              <img
+                className="w-4 h-4 cursor-pointer"
+                src={editIcon}
+                alt="edit icon"
+              />
+            </Link>
             <img
               className="w-4 h-4 cursor-pointer"
-              src={editIcon}
+              onClick={() => handledDelete(item._id)}
+              src={trashIcon}
               alt="edit icon"
             />
           </div>

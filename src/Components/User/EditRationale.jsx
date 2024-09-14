@@ -1,51 +1,58 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { ErrorMessage, Field, Formik, Form } from "formik";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../Api/axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from "react";
 
-function AddRationale() {
+function EditRationale() {
+  const { rationalId } = useParams();
+  const [rationaleData, setRationaleData] = useState(null);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get(`/getRationale/${rationalId}`);
+        setRationaleData(response.data.rationaleData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [rationalId]); 
+
+  if (!rationaleData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Formik
       initialValues={{
-        module: "Medical Review",
-        rationaleSummary: "",
-        rationaleText: "",
-        enable: "1",
-        rationaleID: "",
-        groupID: "",
-        sequence: "",
+        module: rationaleData.Module || "Medical Review",
+        rationaleSummary: rationaleData.RationaleSummary || "",
+        rationaleText: rationaleData.RationaleText || "",
+        rationaleID: rationaleData._id || "", // Use _id as the rationaleID
+        enable: rationaleData.Enable || "1",
+        groupID: rationaleData.GroupID || "",
+        sequence: rationaleData.Sequence || "",
       }}
-      validationSchema={Yup.object({
-        module: Yup.string().required("Module is required"),
-        rationaleSummary: Yup.string().required(
-          "Rationale Summary is required"
-        ),
-        rationaleText: Yup.string().required("Rationale Text is required"),
-        enable: Yup.string().required("Enable field is required"),
-        rationaleID: Yup.string().required("Rationale ID is required"),
-        groupID: Yup.string().required("Group ID is required"),
-        sequence: Yup.number()
-          .required("Sequence is required")
-          .typeError("Sequence must be a number"),
-      })}
+      enableReinitialize // Reinitialize the form when rationaleData changes
       onSubmit={async (values, { resetForm }) => {
         try {
-           await axiosInstance.post(
-            "/addrationale",
-            values
-          );
-          resetForm();
-          toast.success('New Rationale added')
+          await axiosInstance.put(`/editRationale/${rationaleData._id}`, values); 
+          resetForm()
+          toast.success("Successfully edited Rationale");
+          navigate('/user/show-rationale')
         } catch (error) {
           console.error("Error submitting form", error);
+          toast.error("Error editing Rationale");
         }
       }}
     >
       {() => (
         <Form className="max-w-lg mx-auto">
           <h1 className="text-center font-bold text-[3vw] sm:text-xl mb-4">
-            Add Rationale
+            Edit Rationale
           </h1>
 
           {/* Module Field */}
@@ -141,25 +148,6 @@ function AddRationale() {
             </div>
           </div>
 
-          {/* Rationale ID Field */}
-          <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Rationale ID</label>
-            <div className="w-full">
-              <ErrorMessage
-                name="rationaleID"
-                component="div"
-                className="text-red-600 text-xs mt-1"
-              />
-              <Field
-                type="text"
-                id="rationaleID"
-                name="rationaleID"
-                placeholder="Rationale ID"
-                className="w-full p-2 border-2 rounded-md"
-              />
-            </div>
-          </div>
-
           {/* Group ID Field */}
           <div className="sm:flex items-start gap-3 mb-3">
             <label className="w-2/12 ">Group ID</label>
@@ -202,13 +190,13 @@ function AddRationale() {
             type="submit"
             className="mt-4 w-full p-2 bg-black text-white rounded"
           >
-            Submit
+            Save
           </button>
-          <ToastContainer/>
+          <ToastContainer />
         </Form>
       )}
     </Formik>
   );
 }
 
-export default AddRationale;
+export default EditRationale;

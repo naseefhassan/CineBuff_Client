@@ -6,6 +6,7 @@ import ShowRationale from '../Components/User/ShowRationale';
 import AddBill from '../Components/User/AddBill';
 import ShowBill from '../Components/User/ShowBill';
 import ShowUser from '../Components/User/ShowUser';
+import EditRationale from '../Components/User/EditRationale';
 
 function UserPage() {
   return (
@@ -34,6 +35,7 @@ function UserPage() {
           <Route path="/add-bill" element={<AddBill />} />
           <Route path="/show-bill" element={<ShowBill />} />
           <Route path="/show-users" element={<ShowUser />} />
+          <Route path='/edit-rationale/:rationalId' element={<EditRationale/>}></Route>
         </Routes>
       </div>
     </div>
