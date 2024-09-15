@@ -50,7 +50,7 @@ function AddRationale() {
 
           {/* Module Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Module</label>
+            <label className="w-2/12 text-sm ">Module</label>
             <div className="w-full">
               <ErrorMessage
                 name="module"
@@ -62,14 +62,14 @@ function AddRationale() {
                 id="module"
                 name="module"
                 placeholder="Module"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm text-sm"
               />
             </div>
           </div>
 
           {/* Rationale Summary Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Rationale Summary</label>
+            <label className="w-2/12 text-sm ">Rationale Summary</label>
             <div className="w-full">
               <ErrorMessage
                 name="rationaleSummary"
@@ -81,14 +81,14 @@ function AddRationale() {
                 id="rationaleSummary"
                 name="rationaleSummary"
                 placeholder="Rationale Summary"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>
 
           {/* Rationale Text Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12">Rationale Text</label>
+            <label className="w-2/12 text-sm">Rationale Text</label>
             <div className="w-full">
               <ErrorMessage
                 name="rationaleText"
@@ -100,14 +100,14 @@ function AddRationale() {
                 id="rationaleText"
                 name="rationaleText"
                 placeholder="Rationale Text"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>
 
           {/* Enable Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12">Enable</label>
+            <label className="w-2/12 text-sm">Enable</label>
             <div className="w-full">
               <ErrorMessage
                 name="enable"
@@ -143,7 +143,7 @@ function AddRationale() {
 
           {/* Rationale ID Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Rationale ID</label>
+            <label className="w-2/12 text-sm ">Rationale ID</label>
             <div className="w-full">
               <ErrorMessage
                 name="rationaleID"
@@ -155,14 +155,14 @@ function AddRationale() {
                 id="rationaleID"
                 name="rationaleID"
                 placeholder="Rationale ID"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>
 
           {/* Group ID Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Group ID</label>
+            <label className="w-2/12 text-sm ">Group ID</label>
             <div className="w-full">
               <ErrorMessage
                 name="groupID"
@@ -174,14 +174,14 @@ function AddRationale() {
                 id="groupID"
                 name="groupID"
                 placeholder="Group ID"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>
 
           {/* Sequence Field */}
           <div className="sm:flex items-start gap-3 mb-3">
-            <label className="w-2/12 ">Sequence</label>
+            <label className="w-2/12 text-sm ">Sequence</label>
             <div className="w-full ">
               <ErrorMessage
                 name="sequence"
@@ -193,7 +193,7 @@ function AddRationale() {
                 id="sequence"
                 name="sequence"
                 placeholder="Sequence"
-                className="w-full p-2 border-2 rounded-md"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>
