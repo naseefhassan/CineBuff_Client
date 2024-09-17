@@ -11,7 +11,7 @@ function Home() {
 
   //conditionally rendering the user and admin side
   const handleNavigation = (role) => {
-    setSelectUser(role === "admin");
+    setSelectUser(role === "admin/login");
     navigate(`/${role}`); 
   };
 
@@ -22,7 +22,7 @@ function Home() {
         <div className="flex gap-3 items-center my-10">
           <img className="w-7 h-7" src={UserImg} alt="User" />
           <h1
-            onClick={() => handleNavigation("user")}
+            onClick={() => handleNavigation("user/add-rationale")}
             className="text-white cursor-pointer font-semibold"
           >
             User
@@ -31,7 +31,7 @@ function Home() {
         <div className="flex gap-3 items-center my-10">
           <img className="w-7 h-7" src={AdminImg} alt="Admin" />
           <h1
-            onClick={() => handleNavigation("admin")}
+            onClick={() => handleNavigation("admin/login")}
             className="text-white cursor-pointer font-semibold"
           >
             Admin

@@ -56,8 +56,15 @@ function AddBill() {
           validationSchema={validationSchema}
           onSubmit={async (values, { resetForm }) => {
             console.log("Form data", values);
-            await axiosInstance.post("/add-bill", values);
-            toast.success("New Bill Added");
+            const response = await axiosInstance.post("/add-bill", values);
+            console.log(response);
+            
+            if(response.status === 200){
+
+              toast.success("New Bill Added");
+            }else{
+              toast.error('Failed to Add New')
+            }
             resetForm();
           }}
         >
