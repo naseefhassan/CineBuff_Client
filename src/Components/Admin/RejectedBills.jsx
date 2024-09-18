@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../Api/axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRefresh } from "../../Context/Context";
 
 function RejectedBills() {
   const [billings, setBillings] = useState([]);
+  const {refresh ,setRefresh}= useRefresh() 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,11 +19,12 @@ function RejectedBills() {
       }
     };
     fetchData();
-  }, [billings]);
+  }, [refresh]);
 
   const handleApproveBill = async (billId) => {
     await axiosInstance.put(`/admin/ApproveBills/${billId}`);
     toast.success("Bill is Approved");
+    setRefresh(!refresh)
   };
 
   // Filter rejected bills
@@ -28,7 +32,7 @@ function RejectedBills() {
 
   return (
     <div className="relative m-3 text-white">
-      {rejectedBills.length === 0 ? (
+      {rejectedBills.length == 0 ? (
           <h1 className="text-black text-center font-bold">No bills found</h1>
         ) : (
         rejectedBills.map((item) => (
@@ -81,7 +85,7 @@ function RejectedBills() {
             <div className="flex sm:gap-5 justify-center mt-3">
               <button
                 onClick={() => handleApproveBill(item._id)}
-                className="bg-white text-black p-1 px-3 rounded-full hover:bg-green-400 cursor-not-allowed opacity-50"
+                className="bg-white text-black p-1 px-3 rounded-full hover:bg-green-400 "
               >
                 Approve
               </button>
