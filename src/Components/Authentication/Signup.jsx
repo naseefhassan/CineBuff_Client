@@ -46,7 +46,7 @@ function Signup() {
               const JWT = response.data.token;
               localStorage.setItem("Jwt", JWT);
               dispatch(setToken(JWT));
-              navigate("/user");
+              navigate("/user/add-rationale");
               resetForm();
             } else {
               setError("Password must meet the criteria");
@@ -70,7 +70,7 @@ function Signup() {
       }) => (
         <div className="flex justify-center items-center min-h-screen">
           <div className="w-full m-3 sm:w-8/12 sm:m-auto sm:flex sm:h-[400px] shadow-xl rounded-xl">
-            <div className="sm:w-1/2 bg-blue-600 rounded-xl">
+            <div className="sm:w-1/2 bg-black rounded-xl flex flex-col justify-center">
               <h1 className="text-center text-3xl text-white font-bold p-4">
                 Looks like you're new here!
               </h1>
@@ -81,7 +81,7 @@ function Signup() {
             </div>
             <form
               onSubmit={handleSubmit}
-              className="relative sm:w-1/2 flex flex-col gap-5 p-5"
+              className="relative sm:w-1/2 flex flex-col justify-center gap-5 p-5"
             >
               <h1 className="text-center text-2xl font-bold">SIGNUP</h1>
               <Field
@@ -148,7 +148,7 @@ function Signup() {
 
               <button
                 type="submit"
-                className="bg-blue-600 p-1 font-mono rounded-md"
+                className="bg-black text-white p-1 font-mono rounded-md"
               >
                 Signup
               </button>

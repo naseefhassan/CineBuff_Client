@@ -27,7 +27,7 @@ function Login() {
     }
   };
   return (
-    <div className="flex justify-center items-center my-10 ">
+    <div className="flex justify-center items-center my-10 mx-2">
     <div className="w-full max-w-sm p-6 bg-gray-800 rounded-lg shadow-lg">
       <h1 className="text-center text-2xl font-bold mb-6 text-white">
         Admin Login
