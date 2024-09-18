@@ -12,8 +12,6 @@ const AuthGraud = () => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("jwtToken");
-    console.log(storedToken);
-    console.log(token);
     
     if (!token && storedToken) {
       dispatch(setToken(storedToken));

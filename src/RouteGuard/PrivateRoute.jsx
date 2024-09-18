@@ -4,7 +4,6 @@ import { Outlet, useNavigate } from "react-router";
 function PrivateRoute() {
   const naviagte = useNavigate();
   const LocalJwt = localStorage.getItem("jwtToken");
-  console.log(LocalJwt, "e");
 
   useEffect(() => {
     if (LocalJwt) {

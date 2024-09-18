@@ -6,7 +6,6 @@ import ShowRationale from '../Components/User/ShowRationale';
 import AddBill from '../Components/User/AddBill';
 import ShowBill from '../Components/User/ShowBill';
 import EditRationale from '../Components/User/EditRationale';
-import ShowUsers from '../Components/Admin/ShowUsers';
 
 function UserPage() {
   return (
