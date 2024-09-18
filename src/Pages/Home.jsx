@@ -8,6 +8,7 @@ import UserImg from "../assets/Images/user.png";
 import AdminRouter from "../Router/AdminRouter";
 import UserRouter from "../Router/UserRouter";
 import ShowUsers from "../Components/Admin/ShowUsers";
+// import ShowUsers from "../Components/Admin/ShowUsers";
 
 function Home() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function Home() {
             </h1>
           </div>
           <div className="flex gap-3 items-center my-10">
-            <img className="w-7 h-7" src={AdminImg} alt="Admin" />
+            <img className="w-7 h-7" src={AdminImg} alt="User" />
             <h1
               onClick={() => handleNavigation("admin/login")}
               className="text-white cursor-pointer font-semibold"
@@ -56,7 +57,7 @@ function Home() {
               alt="multiple user"
             />
             <h1
-              onClick={() => handleNavigation("/admin/allUsers")}
+              onClick={() => handleNavigation("admin/allUsers")}
               className="text-white cursor-pointer font-semibold"
             >
               Users
@@ -73,7 +74,7 @@ function Home() {
           </div>
         </div>
       ) : (
-        <div className="z-10 sm:hidden bg-gray-600 h-44 absolute top-10 p-4 w-40 opacity-90 font-bold ">
+        <div className="z-10 sm:hidden bg-gray-600  absolute top-10 p-4 w-40 opacity-90 font-bold ">
           <div className="flex gap-3 items-center my-10">
             <img className="w-7 h-7" src={UserImg} alt="User" />
             <h1
@@ -96,6 +97,28 @@ function Home() {
               Admin
             </h1>
           </div>
+          <div className="flex gap-3 items-center my-10">
+            <img
+              className="w-7 h-7"
+              src={multipleUserImg}
+              alt="multiple user"
+            />
+            <h1
+              onClick={() => {handleNavigation("admin/allUsers"),setIsSidebarOpen(false)}}
+              className="text-white cursor-pointer font-semibold"
+            >
+              Users
+            </h1>
+          </div>
+          <div className="flex gap-3 items-center my-10">
+            <img className="w-7 h-7" src={logoutImg} alt="Logout" />
+            <h1
+              onClick={handleLogout}
+              className="text-white cursor-pointer font-semibold"
+            >
+              Logout
+            </h1>
+          </div>
         </div>
       )}
 
@@ -113,7 +136,10 @@ function Home() {
           Rationale List Manager Application
         </h1>
         {selectUser ? <AdminRouter /> : <UserRouter />}
-       
+
+        <Routes>
+          <Route path="/admin/allUsers" element={<ShowUsers />}></Route>
+        </Routes>
       </div>
     </div>
   );

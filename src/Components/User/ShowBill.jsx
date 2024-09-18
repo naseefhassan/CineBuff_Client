@@ -13,7 +13,6 @@ function ShowBill() {
     };
     fetchData();
   }, []);
-  console.log(showBill);
 
   return (
     <div>

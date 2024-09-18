@@ -41,9 +41,8 @@ function ShowRationale() {
 
   const handledDelete = async (delId) => {
     try {
-      const response = await axiosInstance.delete(`/deleteRationale/${delId}`);
+      await axiosInstance.delete(`/deleteRationale/${delId}`);
       setRationaleData(rationaleData.filter((item) => item._id !== delId));
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

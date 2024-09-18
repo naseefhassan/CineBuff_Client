@@ -30,7 +30,6 @@ function PendingBills() {
     const fetchDecisionText = async () => {
       const response = await axiosInstance.get("/admin/decisionText");
       setDecisionLists(response.data.DecisionLists);
-      console.log(response.data.DecisionLists);
     };
   
     // Function for changing bill status to rejected
