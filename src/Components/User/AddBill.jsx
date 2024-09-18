@@ -45,7 +45,7 @@ function AddBill() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
+    <div className="flex justify-center ">
       <div className="w-full max-w-md p-6 rounded-lg ">
         <h1 className="text-center font-bold text-[3vw] sm:text-xl mb-6">
           Add Bill

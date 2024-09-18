@@ -29,7 +29,7 @@ function Login() {
             const JWT = response.data.token
             localStorage.setItem('Jwt', JWT )
             dispatch(setToken(JWT))
-            navigate('/user')
+            navigate('/user/add-rationale')
         } catch (error) {
             if(error.response &&
                 error.response.status === 400){
@@ -41,11 +41,11 @@ function Login() {
         {({values,handleSubmit,handleChange,handleBlur})=>(
            <div className="flex justify-center items-center min-h-screen ">
            <div className=" w-full mx-3 sm:w-8/12 m-auto sm:flex  sm:h-[400px] shadow-xl rounded-xl ">
-           <div className=" sm:w-1/2 bg-blue-600 rounded-xl">
+           <div className=" sm:w-1/2 bg-black rounded-xl flex flex-col justify-center">
             <h1 className="text-center text-3xl text-white font-bold p-4">Looks like you're new here!</h1>
             <h1 className="p-4 text-gray-300 font-mono ">" Get access to your Orders, Wishlist and Recommendations "</h1>
            </div>
-           <form onSubmit={handleSubmit} className=" relative sm:w-1/2 flex flex-col gap-5 p-5">
+           <form onSubmit={handleSubmit} className=" relative sm:w-1/2 flex flex-col justify-center gap-5 p-5">
                <h1 className="text-center text-2xl font-bold">LOGIN</h1>
 
                <Field type='email' id='email' name='email' values={values.email} onChange={handleChange}  onBlur={handleBlur} placeholder='Email' className='p-1 text-center rounded-md border-2'></Field>
@@ -59,7 +59,7 @@ function Login() {
               <ErrorMessage name="password" component='div' className="error"/>
               </div>
 
-               <button type="submit" className="bg-blue-600 p-1 font-mono rounded-md">Login</button>
+               <button type="submit" className="bg-black text-white p-1 font-mono rounded-md">Login</button>
                <p className="text-red-500 text-center text-[12px]">{error}</p>
                <p className="text-[12px] text-center ">Are you New to Digital? please  
                    <Link to={'/auth/signup'}><span className="text-red-600 cursor-pointer"> Singup</span></Link>
