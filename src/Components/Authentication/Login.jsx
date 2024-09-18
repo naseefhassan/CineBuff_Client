@@ -27,7 +27,7 @@ function Login() {
         try {
             const response = await axiosInstance.post('/login',values)
             const JWT = response.data.token
-            localStorage.setItem('Jwt', JWT )
+            localStorage.setItem('jwtToken', JWT )
             dispatch(setToken(JWT))
             navigate('/user/add-rationale')
         } catch (error) {

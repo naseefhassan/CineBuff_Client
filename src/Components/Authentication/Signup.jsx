@@ -44,7 +44,7 @@ function Signup() {
             if (validation(values)) {
               const response = await axiosInstance.post("/signup", values);
               const JWT = response.data.token;
-              localStorage.setItem("Jwt", JWT);
+              localStorage.setItem("jwtToken", JWT);
               dispatch(setToken(JWT));
               navigate("/user/add-rationale");
               resetForm();
