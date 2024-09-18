@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../Api/axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRefresh } from "../../Context/Context";
 
 function PendingBills() {
     const [billings, setBillings] = useState([]);
     const [decisionLists, setDecisionLists] = useState([]);
     const [reject, setReject] = useState(false);
     const [selectedDecision, setSelectedDecision] = useState(""); 
+    const {refresh ,setRefresh}= useRefresh() 
+
   
     useEffect(() => {
       const fetchData = async () => {
@@ -19,11 +22,12 @@ function PendingBills() {
         }
       };
       fetchData();
-    }, [billings]);
+    }, [refresh]);
   
     const handleApproveBill = async (billId) => {
       await axiosInstance.put(`/admin/ApproveBills/${billId}`);
       toast.success('Bill is Approved')
+      setRefresh(!refresh);
     };
   
     // Function to get decision list
@@ -41,6 +45,7 @@ function PendingBills() {
           await axiosInstance.put(`/admin/billStatus/${billId}`, { decisionId }); 
           setReject(false);
           toast.success('Bill Rejected');
+          setRefresh(!refresh);
         }
       } catch (error) {
         console.error(error);

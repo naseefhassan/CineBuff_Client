@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../Api/axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRefresh } from "../../Context/Context";
 
 function ApprovedBills() {
+
   const [billings, setBillings] = useState([]);
   const [decisionLists, setDecisionLists] = useState([]);
   const [reject, setReject] = useState(false);
   const [selectedDecision, setSelectedDecision] = useState("");
+  const {refresh ,setRefresh}= useRefresh() 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +22,7 @@ function ApprovedBills() {
       }
     };
     fetchData();
-  }, []);
+  }, [refresh]);
 
 
   // Function to get decision list
@@ -37,6 +40,8 @@ function ApprovedBills() {
         await axiosInstance.put(`/admin/billStatus/${billId}`, { decisionId });
         setReject(false);
         toast.success("Bill Rejected ");
+        setRefresh(!refresh)
+
       }
     } catch (error) {
       console.error(error);
@@ -48,7 +53,7 @@ function ApprovedBills() {
 
   return (
     <div className="relative m-3 text-white">
-      {approvedBills.length === 0 ? (
+      {approvedBills.length == 0 ? (
           <h1 className="text-black text-center font-bold">No bills found</h1>
         ) : (
         approvedBills.map((item) => (

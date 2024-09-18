@@ -1,13 +1,14 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import AdminImg from "../assets/Images/admin.png";
 import logoutImg from "../assets/Images/logout.png";
 import multipleUserImg from "../assets/Images/multiple-users.png";
 import UserImg from "../assets/Images/user.png";
-import AdminRouter from "../Router/AdminRouter";
 import UserRouter from "../Router/UserRouter";
-import ShowUsers from "../Components/Admin/ShowUsers";
+import Loader from "../Components/Loader/Loader";
+const AdminRouter = lazy(() => import("../Router/AdminRouter"));
+const ShowUsers = lazy(() => import("../Components/Admin/ShowUsers"));
 // import ShowUsers from "../Components/Admin/ShowUsers";
 
 function Home() {
@@ -104,7 +105,9 @@ function Home() {
               alt="multiple user"
             />
             <h1
-              onClick={() => {handleNavigation("admin/allUsers"),setIsSidebarOpen(false)}}
+              onClick={() => {
+                handleNavigation("admin/allUsers"), setIsSidebarOpen(false);
+              }}
               className="text-white cursor-pointer font-semibold"
             >
               Users
@@ -135,11 +138,18 @@ function Home() {
         <h1 className="text-center text-[4vw] font-bold font-mono">
           Rationale List Manager Application
         </h1>
-        {selectUser ? <AdminRouter /> : <UserRouter />}
-
-        <Routes>
-          <Route path="/admin/allUsers" element={<ShowUsers />}></Route>
-        </Routes>
+        {selectUser ? (
+          <Suspense fallback={<Loader />}>
+            <AdminRouter />
+          </Suspense>
+        ) : (
+          <UserRouter />
+        )}
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/admin/allUsers" element={<ShowUsers />}></Route>
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );

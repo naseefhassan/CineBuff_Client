@@ -17,7 +17,11 @@ function ShowBill() {
   return (
     <div>
       <h1 className="text-center font-bold text-[3vw] sm:text-xl">Show Bill</h1>
-      {showBill &&
+      {showBill.length === 0 ? (
+        <h1 className="text-black text-center font-bold my-5">
+          No bills found
+        </h1>
+      ) : (
         showBill.map((item) => (
           <div
             key={item._id}
@@ -26,20 +30,18 @@ function ShowBill() {
             <div className=" m-3">
               <div className="sm:flex gap-1 my-1">
                 <h1 className="font-semibold">Patient Name : </h1>
-                <h1> {item.PatientName
-                }</h1>
+                <h1> {item.PatientName}</h1>
               </div>
               <div className="sm:flex gap-1 my-1">
                 <h1 className="font-semibold">Doctor Name : </h1>
-                <h1> {item.DoctorName
-                }</h1>
+                <h1> {item.DoctorName}</h1>
               </div>
               <div className="sm:flex gap-1 my-1">
                 <h1 className="font-semibold">Phone Number: </h1>
                 <h1> {item.PhoneNumber}</h1>
               </div>
               <div className="sm:flex gap-1 my-1">
-                <h1 className="font-semibold">Cost : </h1>
+                <h1 className="font-semibold">Amount : </h1>
                 <h1>{item.Amount} </h1>
               </div>
               <div className="sm:flex gap-1 my-1">
@@ -50,17 +52,16 @@ function ShowBill() {
             <div className=" m-3">
               <div className="">
                 <h1 className="font-semibold">Specialty Code</h1>
-                <h1 >{item.SpecialityCode
-                }</h1>
+                <h1>{item.SpecialityCode}</h1>
               </div>
               <div className="">
                 <h1 className="font-semibold">Status</h1>
-                <h1 >{item.BillStatus}</h1>
+                <h1>{item.BillStatus}</h1>
               </div>
-             
             </div>
           </div>
-        ))}
+        ))
+      )}
     </div>
   );
 }
