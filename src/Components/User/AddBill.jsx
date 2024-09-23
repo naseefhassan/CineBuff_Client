@@ -220,12 +220,10 @@ function AddBill() {
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:border-indigo-500 focus:ring-indigo-500"
                 >
                   <option value="">Select Speciality Code</option>{" "}
-                  {/* Default option */}
                   {SpecialityCode &&
                     SpecialityCode.map((item) => (
                       <option key={item._id} value={item.SpecialtyCode}>
                         {item.SpecialtyCode || "No Code Available"}{" "}
-                        {/* Use fallback if value is empty */}
                       </option>
                     ))}
                 </Field>

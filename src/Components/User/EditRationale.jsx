@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../Api/axios";
 import { useEffect, useState } from "react";
+import Loader from "../Loader/Loader";
 
 function EditRationale() {
   const { rationalId } = useParams();
@@ -22,7 +23,7 @@ function EditRationale() {
   }, [rationalId]); 
 
   if (!rationaleData) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (
@@ -31,12 +32,12 @@ function EditRationale() {
         module: rationaleData.Module || "Medical Review",
         rationaleSummary: rationaleData.RationaleSummary || "",
         rationaleText: rationaleData.RationaleText || "",
-        rationaleID: rationaleData._id || "", // Use _id as the rationaleID
+        rationaleID: rationaleData._id || "", 
         enable: rationaleData.Enable || "1",
         groupID: rationaleData.GroupID || "",
         sequence: rationaleData.Sequence || "",
       }}
-      enableReinitialize // Reinitialize the form when rationaleData changes
+      enableReinitialize 
       onSubmit={async (values, { resetForm }) => {
         try {
           await axiosInstance.put(`/editRationale/${rationaleData._id}`, values); 

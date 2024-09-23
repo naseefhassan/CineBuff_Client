@@ -62,7 +62,7 @@ function AddRationale() {
                 id="module"
                 name="module"
                 placeholder="Module"
-                className="w-full p-2 border-2 rounded-md text-sm text-sm"
+                className="w-full p-2 border-2 rounded-md text-sm"
               />
             </div>
           </div>

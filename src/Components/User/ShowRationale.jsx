@@ -13,10 +13,10 @@ function ShowRationale() {
   const limit = 10;
 
   useEffect(() => {
-    const fetchData = async (page) => {
+    const fetchData = async () => {
       try {
         const response = await axiosInstance.get(
-          `/showRationale?page=${page}&limit=${limit}`
+          `/showRationale?page=${currentPage}&limit=${limit}`
         );
         setRationaleData(response.data.rationaleData);
         setTotalPages(response.data.totalPages);
@@ -24,10 +24,10 @@ function ShowRationale() {
         console.error(error);
       }
     };
-    fetchData(currentPage);
+    fetchData();
   }, [currentPage]);
 
-  // Toggle the expanded state for a specific item
+  // function for expanded or collapsed
   const toggleParagraph = (index) => {
     setExpandedStates((prevStates) => ({
       ...prevStates,

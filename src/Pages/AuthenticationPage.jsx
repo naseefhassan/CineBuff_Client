@@ -7,10 +7,10 @@ function AuthenticationPage() {
   return (
     <>
       <Routes>
-      <Route path="/" element={<PrivateRoute />}>
-        <Route path="/signup" element={<Signup/>}></Route>
-        <Route path="/login" element={<Login/>} ></Route>
-      </Route>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+        </Route>
       </Routes>
     </>
   );
