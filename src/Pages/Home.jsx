@@ -9,7 +9,6 @@ import UserRouter from "../Router/UserRouter";
 import Loader from "../Components/Loader/Loader";
 const AdminRouter = lazy(() => import("../Router/AdminRouter"));
 const ShowUsers = lazy(() => import("../Components/Admin/ShowUsers"));
-// import ShowUsers from "../Components/Admin/ShowUsers";
 
 function Home() {
   const navigate = useNavigate();
